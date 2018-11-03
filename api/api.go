@@ -73,7 +73,7 @@ func New(chain *chain.Chain, stateCreator *state.Creator, txPool *txpool.TxPool,
 		Mount(router, "/node")
 	subs := subscriptions.New(chain, origins, backtraceLimit)
 	subs.Mount(router, "/subscriptions")
-
+	origins[0] = "http://localhost:8080"
 	return handlers.CORS(
 			handlers.AllowedOrigins(origins),
 			handlers.AllowedHeaders([]string{"content-type"}))(router).ServeHTTP,
